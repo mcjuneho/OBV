@@ -79,7 +79,7 @@ class LBV2ISolver : public smt::AbsSmtSolver
   smt::DatatypeDecl make_datatype_decl(const std::string & s) {
     throw NotImplementedException("Not Implemented");
   };
-  smt::DatatypeConstructorDecl make_datatype_constructor_decl(const std::string s) const {
+  smt::DatatypeConstructorDecl make_datatype_constructor_decl(const std::string s) {
     throw NotImplementedException("Not Implemented");
   };
   void add_constructor(smt::DatatypeDecl & dt, const smt::DatatypeConstructorDecl & con) const {
@@ -100,6 +100,11 @@ class LBV2ISolver : public smt::AbsSmtSolver
   smt::Term get_selector(const smt::Sort & s, std::string con, std::string name) const {
     throw NotImplementedException("Not Implemented");
   };
+  /*bool get_interpolant(const smt::Term & A,
+		       const smt::Term & B,
+		       smt::Term &out_I) const {
+    throw NotImplementedException("Not Implemented");
+    };*/
 
   void run(std::string filename);
   void run_on_stdin();
