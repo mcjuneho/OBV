@@ -61,7 +61,7 @@ int main(){
 
     smt::Term cost_model = s->get_value(cost);
 
-    cout << one_bit << endl << "model cost is: " << cost_model->to_int() << endl;
+    cout << "model cost is: " << cost_model->to_int() << endl;
 
     smt::TermVec assumption_vector;
 
@@ -74,17 +74,18 @@ int main(){
         smt::Term assert_bit = s->make_term(Equal, extracted_bit, one_bit);
         smt::Term assumption_implies = s->make_term(Implies, assumption, assert_bit);
         s->assert_formula(assumption_implies);
+        s->requirePhase(assumption, true);
 
         assumption_vector.push_back(assumption);
     }
 
-    for (int i = 0; i < bv_size; i++){
+    /*for (int i = 0; i < bv_size; i++){
         s->assert_formula(assumption_vector[i]);
-    }
+    }*/
 
     r = s->check_sat();
 
-    if(r.is_sat()){
+    /*if(r.is_sat()){
         cout<<"is sat \n";
     }
     else{
@@ -95,11 +96,11 @@ int main(){
         for (auto a: unsat_core){
             cout << a << endl;
         }
-    }
+    }*/
 
     
 
-    /*for (int i = 0; i < bv_size; i++){
+    for (int i = 0; i < bv_size; i++){
 
         s->push();
         s->assert_formula(assumption_vector[i]);
@@ -117,5 +118,5 @@ int main(){
             cout << "equation unsat with i: " << i << "\n";
             s->pop();
         }
-    }*/
+    }
 }
