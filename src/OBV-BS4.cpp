@@ -74,7 +74,7 @@ int main(){
         smt::Term assert_bit = s->make_term(Equal, extracted_bit, one_bit);
         smt::Term assumption_implies = s->make_term(Implies, assumption, assert_bit);
         s->assert_formula(assumption_implies);
-        s->requirePhase(assumption, true);
+        //s->requirePhase(assumption, true);
 
         assumption_vector.push_back(assumption);
     }
